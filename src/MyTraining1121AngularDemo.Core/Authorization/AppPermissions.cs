@@ -74,12 +74,19 @@
         public const string Pages_Administration_DynamicEntityPropertyValue_Delete = "Pages.Administration.DynamicEntityPropertyValue.Delete";
 
         //TENANT-SPECIFIC PERMISSIONS
-
+        //phonebook
         public const string Pages_Tenant_Dashboard = "Pages.Tenant.Dashboard";
         public const string Pages_Tenant_PhoneBook = "Pages.Tenant.PhoneBook";
         public const string Pages_Tenant_PhoneBook_CreatePerson = "Pages.Tenant.PhoneBook.CreatePerson";
         public const string Pages_Tenant_PhoneBook_DeletePerson = "Pages.Tenant.PhoneBook.DeletePerson";
         public const string Pages_Tenant_PhoneBook_EditPerson = "Pages.Tenant.PhoneBook.EditPerson";
+
+        //customer
+
+        public const string Pages_Tenant_Customer = "Pages.Tenant.Customer";
+        public const string Pages_Tenant_Customer_CreateCustomer = "Pages.Tenant.Customer.CreateCustomer";
+        public const string Pages_Tenant_Customer_DeleteCustomer = "Pages.Tenant.Customer.DeleteCustomer";
+        public const string Pages_Tenant_Customer_EditCustomer = "Pages.Tenant.Customer.EditCustomer";
 
         public const string Pages_Administration_Tenant_Settings = "Pages.Administration.Tenant.Settings";
 

@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using MyTraining1121AngularDemo.EntityFrameworkCore;
 
@@ -11,9 +12,10 @@ using MyTraining1121AngularDemo.EntityFrameworkCore;
 namespace MyTraining1121AngularDemo.Migrations
 {
     [DbContext(typeof(MyTraining1121AngularDemoDbContext))]
-    partial class MyTraining1121AngularDemoDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220722062051_Added_customer_Table")]
+    partial class Added_customer_Table
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -1772,91 +1774,6 @@ namespace MyTraining1121AngularDemo.Migrations
                     b.ToTable("AppChatMessages");
                 });
 
-            modelBuilder.Entity("MyTraining1121AngularDemo.Customers.Customer", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
-
-                    b.Property<string>("Address")
-                        .HasMaxLength(500)
-                        .HasColumnType("nvarchar(500)");
-
-                    b.Property<DateTime>("CreationTime")
-                        .HasColumnType("datetime2");
-
-                    b.Property<long?>("CreatorUserId")
-                        .HasColumnType("bigint");
-
-                    b.Property<long?>("DeleterUserId")
-                        .HasColumnType("bigint");
-
-                    b.Property<DateTime?>("DeletionTime")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("EmailAddress")
-                        .HasMaxLength(255)
-                        .HasColumnType("nvarchar(255)");
-
-                    b.Property<bool>("IsDeleted")
-                        .HasColumnType("bit");
-
-                    b.Property<DateTime?>("LastModificationTime")
-                        .HasColumnType("datetime2");
-
-                    b.Property<long?>("LastModifierUserId")
-                        .HasColumnType("bigint");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasMaxLength(32)
-                        .HasColumnType("nvarchar(32)");
-
-                    b.Property<DateTime>("RegistrationDate")
-                        .HasColumnType("datetime2");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Customer");
-                });
-
-            modelBuilder.Entity("MyTraining1121AngularDemo.Customers.CustomerUsers", b =>
-                {
-                    b.Property<int>("CustomerUsersId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("CustomerUsersId"), 1L, 1);
-
-                    b.Property<DateTime>("CreationTime")
-                        .HasColumnType("datetime2");
-
-                    b.Property<long?>("CreatorUserId")
-                        .HasColumnType("bigint");
-
-                    b.Property<int>("CustomerId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Id")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<long>("UserId")
-                        .HasColumnType("bigint");
-
-                    b.Property<decimal>("totalBillingAmount")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.HasKey("CustomerUsersId");
-
-                    b.HasIndex("CustomerId");
-
-                    b.HasIndex("UserId");
-
-                    b.ToTable("CustomerUsers");
-                });
-
             modelBuilder.Entity("MyTraining1121AngularDemo.Friendships.Friendship", b =>
                 {
                     b.Property<long>("Id")
@@ -2131,6 +2048,77 @@ namespace MyTraining1121AngularDemo.Migrations
                     b.HasIndex("TenancyName");
 
                     b.ToTable("AbpTenants");
+                });
+
+            modelBuilder.Entity("MyTraining1121AngularDemo.PhoneBook.Customer", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<string>("Address")
+                        .HasMaxLength(500)
+                        .HasColumnType("nvarchar(500)");
+
+                    b.Property<DateTime>("CreationTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<long?>("CreatorUserId")
+                        .HasColumnType("bigint");
+
+                    b.Property<long?>("DeleterUserId")
+                        .HasColumnType("bigint");
+
+                    b.Property<DateTime?>("DeletionTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("EmailAddress")
+                        .HasMaxLength(255)
+                        .HasColumnType("nvarchar(255)");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTime?>("LastModificationTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<long?>("LastModifierUserId")
+                        .HasColumnType("bigint");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(32)
+                        .HasColumnType("nvarchar(32)");
+
+                    b.Property<DateTime>("RegistrationDate")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Customer");
+                });
+
+            modelBuilder.Entity("MyTraining1121AngularDemo.PhoneBook.CutomerUser", b =>
+                {
+                    b.Property<string>("Id")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<DateTime>("CreationTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<long?>("CreatorUserId")
+                        .HasColumnType("bigint");
+
+                    b.Property<int>("CustomerId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CustomerId");
+
+                    b.ToTable("CutomerUser");
                 });
 
             modelBuilder.Entity("MyTraining1121AngularDemo.PhoneBook.Person", b =>
@@ -2497,25 +2485,6 @@ namespace MyTraining1121AngularDemo.Migrations
                     b.Navigation("LastModifierUser");
                 });
 
-            modelBuilder.Entity("MyTraining1121AngularDemo.Customers.CustomerUsers", b =>
-                {
-                    b.HasOne("MyTraining1121AngularDemo.Customers.Customer", "Customer")
-                        .WithMany("CustomerUsers")
-                        .HasForeignKey("CustomerId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("MyTraining1121AngularDemo.Authorization.Users.User", "User")
-                        .WithMany()
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Customer");
-
-                    b.Navigation("User");
-                });
-
             modelBuilder.Entity("MyTraining1121AngularDemo.MultiTenancy.Payments.SubscriptionPayment", b =>
                 {
                     b.HasOne("Abp.Application.Editions.Edition", "Edition")
@@ -2552,6 +2521,17 @@ namespace MyTraining1121AngularDemo.Migrations
                     b.Navigation("Edition");
 
                     b.Navigation("LastModifierUser");
+                });
+
+            modelBuilder.Entity("MyTraining1121AngularDemo.PhoneBook.CutomerUser", b =>
+                {
+                    b.HasOne("MyTraining1121AngularDemo.PhoneBook.Customer", "Customer")
+                        .WithMany("CutomerUsers")
+                        .HasForeignKey("CustomerId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Customer");
                 });
 
             modelBuilder.Entity("MyTraining1121AngularDemo.PhoneBook.Phone", b =>
@@ -2638,9 +2618,9 @@ namespace MyTraining1121AngularDemo.Migrations
                     b.Navigation("Tokens");
                 });
 
-            modelBuilder.Entity("MyTraining1121AngularDemo.Customers.Customer", b =>
+            modelBuilder.Entity("MyTraining1121AngularDemo.PhoneBook.Customer", b =>
                 {
-                    b.Navigation("CustomerUsers");
+                    b.Navigation("CutomerUsers");
                 });
 
             modelBuilder.Entity("MyTraining1121AngularDemo.PhoneBook.Person", b =>

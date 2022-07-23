@@ -5,6 +5,7 @@ using MyTraining1121AngularDemo.Authorization.Delegation;
 using MyTraining1121AngularDemo.Authorization.Roles;
 using MyTraining1121AngularDemo.Authorization.Users;
 using MyTraining1121AngularDemo.Chat;
+using MyTraining1121AngularDemo.Customers;
 using MyTraining1121AngularDemo.Editions;
 using MyTraining1121AngularDemo.Friendships;
 using MyTraining1121AngularDemo.MultiTenancy;
@@ -21,6 +22,10 @@ namespace MyTraining1121AngularDemo.EntityFrameworkCore
 
         public virtual DbSet<Person> Persons { get; set; }
         public virtual DbSet<Phone> Phones { get; set; }
+
+        public virtual DbSet<Customer> Customer { get; set; } 
+        public virtual DbSet<CustomerUsers> CustomerUsers { get; set; }
+
         public virtual DbSet<BinaryObject> BinaryObjects { get; set; }
 
         public virtual DbSet<Friendship> Friendships { get; set; }
@@ -38,7 +43,7 @@ namespace MyTraining1121AngularDemo.EntityFrameworkCore
         public virtual DbSet<SubscriptionPaymentExtensionData> SubscriptionPaymentExtensionDatas { get; set; }
 
         public virtual DbSet<UserDelegation> UserDelegations { get; set; }
-        
+
         public virtual DbSet<RecentPassword> RecentPasswords { get; set; }
 
         public MyTraining1121AngularDemoDbContext(DbContextOptions<MyTraining1121AngularDemoDbContext> options)

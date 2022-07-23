@@ -25,6 +25,8 @@ using MyTraining1121AngularDemo.Authorization.Users.Importing.Dto;
 using MyTraining1121AngularDemo.Authorization.Users.Profile.Dto;
 using MyTraining1121AngularDemo.Chat;
 using MyTraining1121AngularDemo.Chat.Dto;
+using MyTraining1121AngularDemo.Customers;
+using MyTraining1121AngularDemo.Customers.Dto;
 using MyTraining1121AngularDemo.DynamicEntityProperties.Dto;
 using MyTraining1121AngularDemo.Editions;
 using MyTraining1121AngularDemo.Editions.Dto;
@@ -140,7 +142,17 @@ namespace MyTraining1121AngularDemo
             configuration.CreateMap<Phone, PhoneInPersonListDto>();
             configuration.CreateMap<Person, GetPersonForEditOutput>();
 
+            ////customer
 
+            configuration.CreateMap<Customer, CustomerListDto>();
+            configuration.CreateMap<CreateCustomerInput, Customer>();
+            configuration.CreateMap<CreateCustomerInput, Customer>();
+            //configuration.CreateMap<AddCustomerInput, Phone>();
+            //configuration.CreateMap<Phone, CustomerUserInCustomerListDto>();
+            configuration.CreateMap<Customer, GetCustomerForEditOutput>();
+           // configuration.CreateMap<CustomerUsers, CustomerUserListDto>();
+
+            
             //AuditLog
             configuration.CreateMap<AuditLog, AuditLogListDto>();
             configuration.CreateMap<EntityChange, EntityChangeListDto>();

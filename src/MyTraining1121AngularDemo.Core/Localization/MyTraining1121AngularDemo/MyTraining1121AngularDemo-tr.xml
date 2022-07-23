@@ -7,6 +7,7 @@
     <text name="Roles">Roller</text>
     <text name="Users">Kullanıcılar</text>
 	  <text name="PhoneBook">Telefon Rehberi</text>
+	  <text name="Customer">Customer</text>
     <text name="InvalidFormMessage">Doldurduğunuz form geçerli değildir. Lütfen kontrol edip düzeltin.</text>
     <text name="InvalidUserNameOrPassword">Kullanıcı adı ya da şifre hatalı.</text>
     <text name="ThereIsNoTenantDefinedWithName{0}">{0} isminde bir müşteri tanımlı değildir.</text>

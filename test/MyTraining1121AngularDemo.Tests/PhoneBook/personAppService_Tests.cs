@@ -28,8 +28,8 @@ namespace MyTraining1121AngularDemo.Tests.PhoneBook
 
             //Assert
             persons.Items.Count.ShouldBe(2);
-           // persons.Items[0].Name.ShouldBe("Douglas");
-           // persons.Items[0].Name.ShouldBe("Adams");
+           persons.Items[0].Name.ShouldBe("Douglas");
+            persons.Items[0].Name.ShouldBe("Adams");
         }
 
         [Fact]
@@ -62,7 +62,7 @@ namespace MyTraining1121AngularDemo.Tests.PhoneBook
                 {
                     await _personAppService.CreatePerson(
                 new CreatePersonInput
-                                {
+                {
                                     Name = "John"
                                 });
                 });

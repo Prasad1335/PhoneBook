@@ -53,7 +53,7 @@ namespace MyTraining1121AngularDemo.Authorization
             languages.CreateChildPermission(AppPermissions.Pages_Administration_Languages_Delete, L("DeletingLanguages"), multiTenancySides: _isMultiTenancyEnabled ? MultiTenancySides.Host : MultiTenancySides.Tenant);
             languages.CreateChildPermission(AppPermissions.Pages_Administration_Languages_ChangeTexts, L("ChangingTexts"));
             languages.CreateChildPermission(AppPermissions.Pages_Administration_Languages_ChangeDefaultLanguage, L("ChangeDefaultLanguage"));
-            
+
             administration.CreateChildPermission(AppPermissions.Pages_Administration_AuditLogs, L("AuditLogs"));
 
             var organizationUnits = administration.CreateChildPermission(AppPermissions.Pages_Administration_OrganizationUnits, L("OrganizationUnits"));
@@ -93,12 +93,22 @@ namespace MyTraining1121AngularDemo.Authorization
 
             //TENANT-SPECIFIC PERMISSIONS
 
+
             pages.CreateChildPermission(AppPermissions.Pages_Tenant_Dashboard, L("Dashboard"), multiTenancySides: MultiTenancySides.Tenant);
-         //   pages.CreateChildPermission(AppPermissions.Pages_Tenant_PhoneBook, L("PhoneBook"), multiTenancySides: MultiTenancySides.Tenant);
+
+            //phoneBook Person
+
             var phoneBook = pages.CreateChildPermission(AppPermissions.Pages_Tenant_PhoneBook, L("PhoneBook"), multiTenancySides: MultiTenancySides.Tenant);
             phoneBook.CreateChildPermission(AppPermissions.Pages_Tenant_PhoneBook_CreatePerson, L("CreateNewPerson"), multiTenancySides: MultiTenancySides.Tenant);
             phoneBook.CreateChildPermission(AppPermissions.Pages_Tenant_PhoneBook_DeletePerson, L("DeletePerson"), multiTenancySides: MultiTenancySides.Tenant);
             phoneBook.CreateChildPermission(AppPermissions.Pages_Tenant_PhoneBook_EditPerson, L("EditPerson"), multiTenancySides: MultiTenancySides.Tenant);
+
+            //Customer
+
+            var customer = pages.CreateChildPermission(AppPermissions.Pages_Tenant_Customer, L("Customer"), multiTenancySides: MultiTenancySides.Tenant);
+            customer.CreateChildPermission(AppPermissions.Pages_Tenant_Customer_CreateCustomer, L("CreateNewCustomer"), multiTenancySides: MultiTenancySides.Tenant);
+            customer.CreateChildPermission(AppPermissions.Pages_Tenant_Customer_DeleteCustomer, L("DeleteCustomer"), multiTenancySides: MultiTenancySides.Tenant);
+            customer.CreateChildPermission(AppPermissions.Pages_Tenant_Customer_EditCustomer, L("EditCustomer"), multiTenancySides: MultiTenancySides.Tenant);
 
             administration.CreateChildPermission(AppPermissions.Pages_Administration_Tenant_Settings, L("Settings"), multiTenancySides: MultiTenancySides.Tenant);
             administration.CreateChildPermission(AppPermissions.Pages_Administration_Tenant_SubscriptionManagement, L("Subscription"), multiTenancySides: MultiTenancySides.Tenant);
