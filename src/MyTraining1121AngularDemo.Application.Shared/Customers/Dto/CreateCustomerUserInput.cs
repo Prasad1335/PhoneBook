@@ -4,14 +4,11 @@ using System.Text;
 
 namespace MyTraining1121AngularDemo.Customers.Dto
 {
-    public class CustomerUserListDto
+    public class CreateCustomerUserInput
     {
-
-
+        public int UserId { get; set; }
         public int CustomerId { get; set; }
 
-        public long UserId { get; set; }
 
-        public decimal? totalBillingAmount { get; set; }
     }
 }

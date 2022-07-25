@@ -15,7 +15,7 @@ using System.Threading.Tasks;
 
 namespace MyTraining1121AngularDemo.Customers
 {
-     [AbpAuthorize(AppPermissions.Pages_Tenant_Customer)]
+    [AbpAuthorize(AppPermissions.Pages_Tenant_Customer)]
     public class CustomerAppService : MyTraining1121AngularDemoAppServiceBase, ICustomerAppService
     {
         private readonly IRepository<Customer> _CustomerRepository;
@@ -27,16 +27,12 @@ namespace MyTraining1121AngularDemo.Customers
 
         public ListResultDto<CustomerListDto> GetPeople(GetPeopleInput input)
         {
-            var Customers = _CustomerRepository
-                .GetAll()
+            var Customers = _CustomerRepository.GetAll()
                 //  .Include(p => p.Phones)
-                .WhereIf(
-                    !input.Filter.IsNullOrEmpty(),
-                    p => p.Name.Contains(input.Filter) ||
-                            p.EmailAddress.Contains(input.Filter) ||
-                            p.Address.Contains(input.Filter) 
-                           // p.RegistrationDate.Contains(input.Filter)
-                )
+                .WhereIf(!input.Filter.IsNullOrEmpty(),
+                         p => p.Name.Contains(input.Filter) ||
+                         p.EmailAddress.Contains(input.Filter) ||
+                         p.Address.Contains(input.Filter))
                 .OrderBy(p => p.Name)
                 .ThenBy(p => p.Address)
                 .ToList();
@@ -58,43 +54,6 @@ namespace MyTraining1121AngularDemo.Customers
             await _CustomerRepository.DeleteAsync(input.Id);
         }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        //[AbpAuthorize(AppPermissions.Pages_Tenant_PhoneBook_EditPerson)]
-        //public async Task<PhoneInPersonListDto> AddPhone(AddPhoneInput input)
-        //{
-        //    var person = _personRepository.Get(input.PersonId);
-        //    await _personRepository.EnsureCollectionLoadedAsync(person, p => p.Phones);
-
-        //    var phone = ObjectMapper.Map<Phone>(input);
-        //    person.Phones.Add(phone);
-
-        //    //Get auto increment Id of the new Phone by saving to database
-        //    await CurrentUnitOfWork.SaveChangesAsync();
-
-        //    return ObjectMapper.Map<PhoneInPersonListDto>(phone);
-        //}
-
         [AbpAuthorize(AppPermissions.Pages_Tenant_Customer_EditCustomer)]
         public async Task<GetCustomerForEditOutput> GetCustomerForEdit(GetCustomerForEditInput input)
         {
@@ -109,7 +68,7 @@ namespace MyTraining1121AngularDemo.Customers
             customer.Name = input.Name;
             customer.EmailAddress = input.EmailAddress;
             customer.Address = input.Address;
-            customer.RegistrationDate = input.RegistrationDate; 
+            customer.RegistrationDate = input.RegistrationDate;
             await _CustomerRepository.UpdateAsync(customer);
         }
 

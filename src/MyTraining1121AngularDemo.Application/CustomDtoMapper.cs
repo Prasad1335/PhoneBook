@@ -80,7 +80,7 @@ namespace MyTraining1121AngularDemo
             configuration.CreateMap<Role, RoleListDto>();
             configuration.CreateMap<UserRole, UserListRoleDto>();
 
-            
+
 
             //Edition
             configuration.CreateMap<EditionEditDto, SubscribableEdition>().ReverseMap();
@@ -134,7 +134,7 @@ namespace MyTraining1121AngularDemo
             configuration.CreateMap<ImportUserDto, User>();
 
             //Person
-           
+
             configuration.CreateMap<Person, PersonListDto>();
             configuration.CreateMap<CreatePersonInput, Person>();
             configuration.CreateMap<CreatePersonInput, Person>();
@@ -150,9 +150,9 @@ namespace MyTraining1121AngularDemo
             //configuration.CreateMap<AddCustomerInput, Phone>();
             //configuration.CreateMap<Phone, CustomerUserInCustomerListDto>();
             configuration.CreateMap<Customer, GetCustomerForEditOutput>();
-           // configuration.CreateMap<CustomerUsers, CustomerUserListDto>();
+             configuration.CreateMap<CustomerUsers, CustomerUserListDto>();
 
-            
+
             //AuditLog
             configuration.CreateMap<AuditLog, AuditLogListDto>();
             configuration.CreateMap<EntityChange, EntityChangeListDto>();
@@ -184,7 +184,7 @@ namespace MyTraining1121AngularDemo
             configuration.CreateMap<DynamicEntityPropertyDto, DynamicEntityProperty>();
 
             configuration.CreateMap<DynamicEntityPropertyValue, DynamicEntityPropertyValueDto>().ReverseMap();
-            
+
             //User Delegations
             configuration.CreateMap<CreateUserDelegationDto, UserDelegation>();
 

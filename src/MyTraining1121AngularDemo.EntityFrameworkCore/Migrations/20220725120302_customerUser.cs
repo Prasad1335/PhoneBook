@@ -5,29 +5,32 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace MyTraining1121AngularDemo.Migrations
 {
-    public partial class Added_CustomerUsers_table : Migration
+    public partial class customerUser : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
-            //migrationBuilder.DropTable(
-            //    name: "CutomerUser");
+          
 
             migrationBuilder.CreateTable(
                 name: "CustomerUsers",
                 columns: table => new
                 {
-                    CustomerUsersId = table.Column<int>(type: "int", nullable: false)
+                    Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     CustomerId = table.Column<int>(type: "int", nullable: false),
                     UserId = table.Column<long>(type: "bigint", nullable: false),
-                    totalBillingAmount = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
-                    Id = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    totalBillingAmount = table.Column<decimal>(type: "decimal(18,2)", nullable: true),
                     CreationTime = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    CreatorUserId = table.Column<long>(type: "bigint", nullable: true)
+                    CreatorUserId = table.Column<long>(type: "bigint", nullable: true),
+                    LastModificationTime = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    LastModifierUserId = table.Column<long>(type: "bigint", nullable: true),
+                    IsDeleted = table.Column<bool>(type: "bit", nullable: false),
+                    DeleterUserId = table.Column<long>(type: "bigint", nullable: true),
+                    DeletionTime = table.Column<DateTime>(type: "datetime2", nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_CustomerUsers", x => x.CustomerUsersId);
+                    table.PrimaryKey("PK_CustomerUsers", x => x.Id);
                     table.ForeignKey(
                         name: "FK_CustomerUsers_AbpUsers_UserId",
                         column: x => x.UserId,

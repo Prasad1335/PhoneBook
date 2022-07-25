@@ -11,11 +11,9 @@ using System.Threading.Tasks;
 namespace MyTraining1121AngularDemo.Customers
 {
     [Table("CustomerUsers")]
-    public class CustomerUsers : CreationAuditedEntity<string>
+    public class CustomerUsers : FullAuditedEntity
     {
-        [Key]
-        public virtual int CustomerUsersId { get; set; }
-
+       
         public virtual int CustomerId { get; set; }
         [ForeignKey("CustomerId")]
         public virtual Customer Customer { get; set; }
@@ -25,7 +23,6 @@ namespace MyTraining1121AngularDemo.Customers
         public virtual User User { get; set; }
 
         public virtual decimal? totalBillingAmount { get; set; }
-
 
     }
 }

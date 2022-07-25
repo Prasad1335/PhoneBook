@@ -12,8 +12,8 @@ using MyTraining1121AngularDemo.EntityFrameworkCore;
 namespace MyTraining1121AngularDemo.Migrations
 {
     [DbContext(typeof(MyTraining1121AngularDemoDbContext))]
-    [Migration("20220722122921_Added_CustomerUsers_table")]
-    partial class Added_CustomerUsers_table
+    [Migration("20220725120302_customerUser")]
+    partial class customerUser
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -1826,11 +1826,11 @@ namespace MyTraining1121AngularDemo.Migrations
 
             modelBuilder.Entity("MyTraining1121AngularDemo.Customers.CustomerUsers", b =>
                 {
-                    b.Property<int>("CustomerUsersId")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("CustomerUsersId"), 1L, 1);
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
                     b.Property<DateTime>("CreationTime")
                         .HasColumnType("datetime2");
@@ -1841,16 +1841,28 @@ namespace MyTraining1121AngularDemo.Migrations
                     b.Property<int>("CustomerId")
                         .HasColumnType("int");
 
-                    b.Property<string>("Id")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<long?>("DeleterUserId")
+                        .HasColumnType("bigint");
+
+                    b.Property<DateTime?>("DeletionTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTime?>("LastModificationTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<long?>("LastModifierUserId")
+                        .HasColumnType("bigint");
 
                     b.Property<long>("UserId")
                         .HasColumnType("bigint");
 
-                    b.Property<decimal>("totalBillingAmount")
+                    b.Property<decimal?>("totalBillingAmount")
                         .HasColumnType("decimal(18,2)");
 
-                    b.HasKey("CustomerUsersId");
+                    b.HasKey("Id");
 
                     b.HasIndex("CustomerId");
 
