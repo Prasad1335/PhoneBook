@@ -20,6 +20,6 @@ namespace MyTraining1121AngularDemo.Customers.Dto
 
         public virtual DateTime RegistrationDate { get; set; }
 
-        //public Collection<CustomerUserInCustomerListDto> Phones { get; set; }
+        public Collection<CustomerUserListDto> Customers { get; set; }
     }
 }

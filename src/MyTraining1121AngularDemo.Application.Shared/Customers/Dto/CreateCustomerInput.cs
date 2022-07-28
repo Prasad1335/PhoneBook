@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Text;
@@ -18,6 +19,8 @@ namespace MyTraining1121AngularDemo.Customers.Dto
 
         [Required]
         public DateTime RegistrationDate { get; set; }
+
+        public IList<long> UserId { get; set; }
     }
 }
 

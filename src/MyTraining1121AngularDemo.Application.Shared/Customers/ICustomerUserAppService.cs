@@ -11,8 +11,8 @@ namespace MyTraining1121AngularDemo.Customers
 {
     public interface ICustomerUserAppService : IApplicationService
     {
-        ListResultDto<UserListDto> GetCustomerUser();
-        ListResultDto<CustomerUserListDto> GetCustomerUserList();
+       
+        ListResultDto<UserListSecondDto> GetCustomerUserList(long CustomerId);
         Task CreateCustomerUser(CreateCustomerUserInput input);
     }
 }

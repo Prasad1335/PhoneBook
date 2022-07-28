@@ -19,33 +19,65 @@ namespace MyTraining1121AngularDemo.Customers
     public class CustomerAppService : MyTraining1121AngularDemoAppServiceBase, ICustomerAppService
     {
         private readonly IRepository<Customer> _CustomerRepository;
+        private readonly IRepository<CustomerUsers> _CustomerUsersRepository;
 
-        public CustomerAppService(IRepository<Customer> CustomerRepository)
+        public CustomerAppService(IRepository<Customer> CustomerRepository, IRepository<CustomerUsers> customerUsersRepository)
         {
             _CustomerRepository = CustomerRepository;
+            _CustomerUsersRepository = customerUsersRepository;
         }
 
         public ListResultDto<CustomerListDto> GetPeople(GetPeopleInput input)
         {
             var Customers = _CustomerRepository.GetAll()
-                //  .Include(p => p.Phones)
                 .WhereIf(!input.Filter.IsNullOrEmpty(),
                          p => p.Name.Contains(input.Filter) ||
                          p.EmailAddress.Contains(input.Filter) ||
                          p.Address.Contains(input.Filter))
-                .OrderBy(p => p.Name)
-                .ThenBy(p => p.Address)
                 .ToList();
 
             return new ListResultDto<CustomerListDto>(ObjectMapper.Map<List<CustomerListDto>>(Customers));
         }
 
 
+        //public ListResultDto<CustomerUserListDto> CustomerUserGetById(int id)
+        //{
+        //    var CustomerUser = _CustomerUsersRepository.GetAll()
+        //       .Where(u => u.UserId == id).ToList();
+
+        //    return new ListResultDto<CustomerUserListDto>(ObjectMapper.Map<List<CustomerUserListDto>>(CustomerUser));
+        //}
+
+
         [AbpAuthorize(AppPermissions.Pages_Tenant_Customer_CreateCustomer)]
         public async Task CreateCustomer(CreateCustomerInput input)
         {
-            var cust = ObjectMapper.Map<Customer>(input);
-            await _CustomerRepository.InsertAsync(cust);
+
+            var customer = ObjectMapper.Map<Customer>(input);
+            await _CustomerRepository.InsertAndGetIdAsync(customer);
+
+            var Customers = _CustomerRepository.GetAll().ToList();
+
+            var cust = Customers.Last();
+
+            var customerID = cust.Id;
+
+          
+            //for (int i = 0; i < users; i++)
+            //{
+            //    var user = input.UserId.Add(i);
+            //    var customerUser = new CustomerUsers { CustomerId = customerID, UserId = user };
+            //    await _CustomerUsersRepository.InsertAsync(customerUser);
+
+            //}
+
+            foreach(long i in input.UserId)
+            {
+                
+                var customerUser = new CustomerUsers { CustomerId = customerID, UserId = i };
+                await _CustomerUsersRepository.InsertAsync(customerUser);
+            }
+
         }
 
         [AbpAuthorize(AppPermissions.Pages_Tenant_Customer_DeleteCustomer)]
@@ -71,7 +103,5 @@ namespace MyTraining1121AngularDemo.Customers
             customer.RegistrationDate = input.RegistrationDate;
             await _CustomerRepository.UpdateAsync(customer);
         }
-
-
     }
 }

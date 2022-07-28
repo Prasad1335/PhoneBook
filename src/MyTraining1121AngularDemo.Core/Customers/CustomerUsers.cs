@@ -24,6 +24,7 @@ namespace MyTraining1121AngularDemo.Customers
 
         public virtual decimal? totalBillingAmount { get; set; }
 
+
     }
 }
 

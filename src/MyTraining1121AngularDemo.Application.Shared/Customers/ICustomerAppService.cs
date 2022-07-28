@@ -15,11 +15,10 @@ namespace MyTraining1121AngularDemo.Customers
         ListResultDto<CustomerListDto> GetPeople(GetPeopleInput input);
         Task CreateCustomer(CreateCustomerInput input);
         Task DeleteCustomer(EntityDto input);
-        ////Task DeletePhone(EntityDto<long> input);
-        //Task<CustomerUserInCustomerListDto> AddPhone(AddCustomerUserInput input);
         Task<GetCustomerForEditOutput> GetCustomerForEdit(GetCustomerForEditInput input);
         Task EditCustomer(EditCustomerInput input);
 
+        // ListResultDto<CustomerUserListDto> CustomerUserGetById(int id);
 
     }
 }

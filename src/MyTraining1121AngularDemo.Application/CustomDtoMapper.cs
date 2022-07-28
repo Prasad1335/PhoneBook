@@ -145,13 +145,13 @@ namespace MyTraining1121AngularDemo
             ////customer
 
             configuration.CreateMap<Customer, CustomerListDto>();
+           // configuration.CreateMap<User, USersListDto>();
             configuration.CreateMap<CreateCustomerInput, Customer>();
             configuration.CreateMap<CreateCustomerInput, Customer>();
-            //configuration.CreateMap<AddCustomerInput, Phone>();
-            //configuration.CreateMap<Phone, CustomerUserInCustomerListDto>();
             configuration.CreateMap<Customer, GetCustomerForEditOutput>();
-             configuration.CreateMap<CustomerUsers, CustomerUserListDto>();
-
+            configuration.CreateMap<CustomerUsers, CustomerUserListDto>().ReverseMap();
+            configuration.CreateMap<User, UserListSecondDto>().ReverseMap();
+            
 
             //AuditLog
             configuration.CreateMap<AuditLog, AuditLogListDto>();

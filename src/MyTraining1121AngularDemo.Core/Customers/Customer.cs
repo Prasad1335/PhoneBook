@@ -1,4 +1,5 @@
-﻿using Abp.Domain.Entities.Auditing;
+﻿using Abp.Domain.Entities;
+using Abp.Domain.Entities.Auditing;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -10,7 +11,7 @@ using System.Threading.Tasks;
 namespace MyTraining1121AngularDemo.Customers
 {
     [Table("Customer")]
-    public class Customer : FullAuditedEntity
+    public class Customer : FullAuditedEntity, IMustHaveTenant
     {
         public const int MaxNameLength = 32;
         public const int MaxEmailAddressLength = 255;
@@ -30,5 +31,7 @@ namespace MyTraining1121AngularDemo.Customers
         public virtual DateTime RegistrationDate { get; set; }
 
         public virtual ICollection<CustomerUsers> CustomerUsers { get; set; }
+
+        public virtual int TenantId { get; set; }
     }
 }

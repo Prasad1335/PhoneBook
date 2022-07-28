@@ -1,5 +1,8 @@
 ﻿using Abp.Application.Services.Dto;
+using Abp.Authorization;
 using Abp.Domain.Repositories;
+using Microsoft.EntityFrameworkCore;
+using MyTraining1121AngularDemo.Authorization;
 using MyTraining1121AngularDemo.Authorization.Users;
 using MyTraining1121AngularDemo.Authorization.Users.Dto;
 using MyTraining1121AngularDemo.Customers.Dto;
@@ -11,30 +14,27 @@ using System.Threading.Tasks;
 
 namespace MyTraining1121AngularDemo.Customers
 {
+    [AbpAuthorize(AppPermissions.Pages_Tenant_Customer)]
     public class CustomerUserAppService : MyTraining1121AngularDemoAppServiceBase, ICustomerUserAppService
     {
-        private readonly IRepository<User, long> _UserRepository;
         private readonly IRepository<CustomerUsers> _CustomerUserRepository;
+        private readonly IRepository<User, long> _userRepository;
 
-        public CustomerUserAppService(IRepository<User, long> userRepository, IRepository<CustomerUsers> customerUserRepository)
+        public CustomerUserAppService(IRepository<CustomerUsers> customerUserRepository, IRepository<User, long> userRepository)
         {
-            _UserRepository = userRepository;
             _CustomerUserRepository = customerUserRepository;
+            _userRepository = userRepository;
         }
 
-        public ListResultDto<UserListDto> GetCustomerUser()
+        public ListResultDto<UserListSecondDto> GetCustomerUserList(long CustomerId)
         {
-            var userList = _UserRepository.GetAll().ToList();
-
-            return new ListResultDto<UserListDto>(ObjectMapper.Map<List<UserListDto>>(userList));
-        }
-
-
-        public ListResultDto<CustomerUserListDto> GetCustomerUserList()
-        {
-            var customerUserList = _CustomerUserRepository.GetAll().ToList();
-
-            return new ListResultDto<CustomerUserListDto>(ObjectMapper.Map<List<CustomerUserListDto>>(customerUserList));
+            var customerUserList = _CustomerUserRepository
+                .GetAll()
+                   .Include(c => c.User)
+                .Where(w => w.CustomerId == CustomerId)
+                  .Select(u => u.User)
+                .ToList();
+            return new ListResultDto<UserListSecondDto>(ObjectMapper.Map<List<UserListSecondDto>>(customerUserList));
         }
 
 
@@ -45,3 +45,7 @@ namespace MyTraining1121AngularDemo.Customers
         }
     }
 }
+
+
+
+
